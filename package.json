@@ -1,0 +1,19 @@
+{
+  "name": "physics-problems",
+  "version": "1.0.0",
+  "description": "",
+  "main": "formulae.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "dependencies": {
+    "mathjs": "^6.2.5"
+  }
+}
