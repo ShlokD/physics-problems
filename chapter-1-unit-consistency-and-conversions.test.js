@@ -47,4 +47,35 @@ describe("Converting Speed Units", () => {
     expect(convertToTwoDigits(x)).toEqual(2.71);
     expect(convertToTwoDigits(y)).toEqual(3.59);
   });
+
+  test("1.7-a", () => {
+    const vectorA = formula.getVectorComponents({ magnitude: 72.4, angle: 58 });
+    const vectorB = formula.getVectorComponents({ magnitude: 57.3, angle: 216 });
+    const vectorC = formula.getVectorComponents({ magnitude: 17.8, angle: 270 });
+
+    const { distance } = formula.getVectorAddition([vectorA, vectorB, vectorC]);
+    expect(convertToTwoDigits(distance)).toEqual(12.74);
+  });
+
+  test("1.7-b", () => {
+    const vectorA = formula.getVectorComponents({ magnitude: 72.4, angle: 58 });
+    const vectorB = formula.getVectorComponents({ magnitude: 57.3, angle: 216 });
+    const vectorC = formula.getVectorComponents({ magnitude: 17.8, angle: 270 });
+
+    const { angle } = formula.getVectorAddition([vectorA, vectorB, vectorC]);
+    expect(convertToTwoDigits(angle)).toEqual(-51.14);
+  });
+
+  test("1.8", () => {
+    const threeDimensionalDistance = formula.getVectorDistanceInThreeDimensions({ AX: -10.4, AY: 8.7, AZ: 2.1 });
+    expect(convertToTwoDigits(threeDimensionalDistance)).toEqual(13.72);    
+  });
+  
+  test("1.9", () => {
+    const vectorD = formula.createVector(6, 3, -1);
+    const vectorE = formula.createVector(4, -5, 8);
+    const vectorSum = formula.addUnitVectors([formula.multiplyVectorByScalar(vectorD, 2), formula.multiplyVectorByScalar(vectorE, -1)]);
+    const vectorMagnitude = formula.getVectorMagnitude(vectorSum);
+    expect(convertToTwoDigits(vectorMagnitude)).toEqual(16.88);   
+  });
 });
