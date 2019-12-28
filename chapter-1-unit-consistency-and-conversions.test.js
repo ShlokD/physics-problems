@@ -3,7 +3,7 @@ const { makePoint } = require("./structures");
 
 const convertToTwoDigits = num => parseFloat(num.toFixed(2));
 
-describe("Converting Speed Units", () => {
+describe("Practice Problems", () => {
   test("1.1", () => {
     const andyGreenSpeedInMiles = 763;
     const distanceInMiles = formula.convertMilesToMeters(andyGreenSpeedInMiles);
@@ -78,4 +78,63 @@ describe("Converting Speed Units", () => {
     const vectorMagnitude = formula.getVectorMagnitude(vectorSum);
     expect(convertToTwoDigits(vectorMagnitude)).toEqual(16.88);   
   });
+
+  test("1.10", () => {
+    const vectorD = formula.createVector(6, 3, -1);
+    const vectorE = formula.createVector(4, -5, 8);
+    const vectorProduct = formula.multiplyUnitVectors(vectorD, vectorE);
+    expect(vectorProduct).toEqual(formula.createVector(19, -52, -42));
+  });
+
+  test("1.12", () => {
+    const { x: AX, y: AY, z: AZ } = formula.getVectorComponents({ magnitude: 6, angle: 0});
+    const { x: BX, y: BY, z: BZ } = formula.getVectorComponents({ magnitude: 4, angle: 30});
+
+    const vectorA = formula.createVector(AX, AY, AZ);
+    const vectorB = formula.createVector(BX, BY, BZ);
+    const vectorC = formula.multiplyUnitVectors(vectorA, vectorB);
+    expect(vectorC).toEqual(formula.createVector(0, 0, 12));
+  });
+})
+
+describe("Exercises", () => {
+  test("1.1", () => {
+    const inchesInMile = 63360;
+    const centimetersInMile = inchesInMile * 2.54;
+    const kilometersInMile = centimetersInMile / 100000
+    expect(convertToTwoDigits(kilometersInMile)).toEqual(1.61)
+  });
+
+  test("1.2", () => {
+    const totalVolumeInLiters = 0.473;
+    const totalVolumeInInches = totalVolumeInLiters * 1000 / Math.pow(2.54, 3);
+    expect(convertToTwoDigits(totalVolumeInInches)).toEqual(28.86);
+  });
+
+  test("1.5", () => {
+    const displacementInMeters = 327 * Math.pow(2.54, 3) / 1000;
+    expect(convertToTwoDigits(displacementInMeters)).toEqual(5.36);
+  });
+
+  test("1.6", () => {
+    const areaInFeet = 43600;
+    const areaInMeters = areaInFeet * 0.3048 * 0.3048;
+    const areaInHectares = areaInMeters / 10000;
+    expect(convertToTwoDigits(areaInHectares)).toEqual(0.41)
+  });
+
+  test("1.7", () => {
+    const timeInGigaseconds = Math.pow(10, 9);
+    const secondsInAYear = 365 * 24 * 60 * 60;
+    const yearsInGS = timeInGigaseconds / secondsInAYear;
+    expect(convertToTwoDigits(yearsInGS)).toEqual(31.71)
+  });
+
+  test("1.8", () => {
+    const furlongs = 180000;
+    const fortnightToHours = 14 * 24;
+    const furlongsToMiles = furlongs / 8;
+    const speedInMiles = furlongsToMiles / fortnightToHours;
+    expect(convertToTwoDigits(speedInMiles)).toEqual(66.96);
+  })
 });

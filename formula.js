@@ -4,8 +4,9 @@ const convertMilesToMeters = miles => miles * 1609.34;
 
 const convertHoursToSeconds = hours => hours * 60 * 60;
 
-const convertInchesVolumetoCentimetersVolume = inches =>
-  inches * 2.54 * 2.54 * 2.54;
+const convertInchesToCentimeters = inches => inches * 2.54;
+
+const convertInchesVolumetoCentimetersVolume = inches => inches * 2.54 * 2.54 * 2.54;
 
 const massToEnergy = mass => (mass * lightspeed * lightspeed).toString();
 
@@ -45,7 +46,7 @@ const getVectorAddition = vectors => {
 const getVectorDistanceInThreeDimensions = ({ AX, AY, AZ }) =>
   Math.sqrt(AX * AX + AY * AY + AZ * AZ);
 
-const createVector = (x, y, z) => ({ x, y, z });
+const createVector = (x = 0, y = 0, z = 0) => ({ x, y, z });
 
 const multiplyVectorByScalar = (vector, scalar) =>
   createVector(scalar * vector.x, scalar * vector.y, scalar * vector.z);
@@ -70,9 +71,19 @@ const addUnitVectors = vectors => {
   return createVector(newVectorX, newVectorY, newVectorZ);
 };
 
+
+const multiplyUnitVectors = (vectorA, vectorB) => {
+  const newVectorX = vectorA.y * vectorB.z - vectorA.z * vectorB.y;
+  const newVectorY = vectorA.z * vectorB.x - vectorA.x * vectorB.z;
+  const newVectorZ = vectorA.x * vectorB.y - vectorA.y * vectorB.x;
+
+  return createVector(parseFloat(newVectorX.toFixed(2)), parseFloat(newVectorY.toFixed(2)), parseFloat(newVectorZ.toFixed(2)));
+}
+
 const formula = {
   convertMilesToMeters,
   convertHoursToSeconds,
+  convertInchesToCentimeters,
   convertInchesVolumetoCentimetersVolume,
   massToEnergy,
   calculateDistance,
@@ -82,7 +93,9 @@ const formula = {
   createVector,
   multiplyVectorByScalar,
   getVectorMagnitude,
-  addUnitVectors
+  addUnitVectors,
+  multiplyUnitVectors,
+  lightspeed
 };
 
 module.exports = formula;
