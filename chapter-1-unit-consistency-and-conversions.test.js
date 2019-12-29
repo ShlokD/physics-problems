@@ -50,8 +50,14 @@ describe("Practice Problems", () => {
 
   test("1.7-a", () => {
     const vectorA = formula.getVectorComponents({ magnitude: 72.4, angle: 58 });
-    const vectorB = formula.getVectorComponents({ magnitude: 57.3, angle: 216 });
-    const vectorC = formula.getVectorComponents({ magnitude: 17.8, angle: 270 });
+    const vectorB = formula.getVectorComponents({
+      magnitude: 57.3,
+      angle: 216
+    });
+    const vectorC = formula.getVectorComponents({
+      magnitude: 17.8,
+      angle: 270
+    });
 
     const { distance } = formula.getVectorAddition([vectorA, vectorB, vectorC]);
     expect(convertToTwoDigits(distance)).toEqual(12.74);
@@ -59,24 +65,35 @@ describe("Practice Problems", () => {
 
   test("1.7-b", () => {
     const vectorA = formula.getVectorComponents({ magnitude: 72.4, angle: 58 });
-    const vectorB = formula.getVectorComponents({ magnitude: 57.3, angle: 216 });
-    const vectorC = formula.getVectorComponents({ magnitude: 17.8, angle: 270 });
+    const vectorB = formula.getVectorComponents({
+      magnitude: 57.3,
+      angle: 216
+    });
+    const vectorC = formula.getVectorComponents({
+      magnitude: 17.8,
+      angle: 270
+    });
 
     const { angle } = formula.getVectorAddition([vectorA, vectorB, vectorC]);
     expect(convertToTwoDigits(angle)).toEqual(-51.14);
   });
 
   test("1.8", () => {
-    const threeDimensionalDistance = formula.getVectorDistanceInThreeDimensions({ AX: -10.4, AY: 8.7, AZ: 2.1 });
-    expect(convertToTwoDigits(threeDimensionalDistance)).toEqual(13.72);    
+    const threeDimensionalDistance = formula.getVectorDistanceInThreeDimensions(
+      { AX: -10.4, AY: 8.7, AZ: 2.1 }
+    );
+    expect(convertToTwoDigits(threeDimensionalDistance)).toEqual(13.72);
   });
-  
+
   test("1.9", () => {
     const vectorD = formula.createVector(6, 3, -1);
     const vectorE = formula.createVector(4, -5, 8);
-    const vectorSum = formula.addUnitVectors([formula.multiplyVectorByScalar(vectorD, 2), formula.multiplyVectorByScalar(vectorE, -1)]);
+    const vectorSum = formula.addUnitVectors([
+      formula.multiplyVectorByScalar(vectorD, 2),
+      formula.multiplyVectorByScalar(vectorE, -1)
+    ]);
     const vectorMagnitude = formula.getVectorMagnitude(vectorSum);
-    expect(convertToTwoDigits(vectorMagnitude)).toEqual(16.88);   
+    expect(convertToTwoDigits(vectorMagnitude)).toEqual(16.88);
   });
 
   test("1.10", () => {
@@ -87,47 +104,54 @@ describe("Practice Problems", () => {
   });
 
   test("1.12", () => {
-    const { x: AX, y: AY, z: AZ } = formula.getVectorComponents({ magnitude: 6, angle: 0});
-    const { x: BX, y: BY, z: BZ } = formula.getVectorComponents({ magnitude: 4, angle: 30});
+    const { x: AX, y: AY, z: AZ } = formula.getVectorComponents({
+      magnitude: 6,
+      angle: 0
+    });
+    const { x: BX, y: BY, z: BZ } = formula.getVectorComponents({
+      magnitude: 4,
+      angle: 30
+    });
 
     const vectorA = formula.createVector(AX, AY, AZ);
     const vectorB = formula.createVector(BX, BY, BZ);
     const vectorC = formula.multiplyUnitVectors(vectorA, vectorB);
     expect(vectorC).toEqual(formula.createVector(0, 0, 12));
   });
-})
+});
 
 describe("Exercises", () => {
   test("1.1", () => {
     const inchesInMile = 63360;
     const centimetersInMile = inchesInMile * 2.54;
-    const kilometersInMile = centimetersInMile / 100000
-    expect(convertToTwoDigits(kilometersInMile)).toEqual(1.61)
+    const kilometersInMile = centimetersInMile / 100000;
+    expect(convertToTwoDigits(kilometersInMile)).toEqual(1.61);
   });
 
   test("1.2", () => {
     const totalVolumeInLiters = 0.473;
-    const totalVolumeInInches = totalVolumeInLiters * 1000 / Math.pow(2.54, 3);
+    const totalVolumeInInches =
+      (totalVolumeInLiters * 1000) / Math.pow(2.54, 3);
     expect(convertToTwoDigits(totalVolumeInInches)).toEqual(28.86);
   });
 
   test("1.5", () => {
-    const displacementInMeters = 327 * Math.pow(2.54, 3) / 1000;
+    const displacementInMeters = (327 * Math.pow(2.54, 3)) / 1000;
     expect(convertToTwoDigits(displacementInMeters)).toEqual(5.36);
   });
 
   test("1.6", () => {
     const areaInFeet = 43600;
     const areaInMeters = areaInFeet * 0.3048 * 0.3048;
-    const areaInHectares = areaInMeters / 10000;
-    expect(convertToTwoDigits(areaInHectares)).toEqual(0.41)
+    const areaInHectares = areaInMeters / Math.pow(10, 4);
+    expect(convertToTwoDigits(areaInHectares)).toEqual(0.41);
   });
 
   test("1.7", () => {
     const timeInGigaseconds = Math.pow(10, 9);
     const secondsInAYear = 365 * 24 * 60 * 60;
     const yearsInGS = timeInGigaseconds / secondsInAYear;
-    expect(convertToTwoDigits(yearsInGS)).toEqual(31.71)
+    expect(convertToTwoDigits(yearsInGS)).toEqual(31.71);
   });
 
   test("1.8", () => {
@@ -136,5 +160,39 @@ describe("Exercises", () => {
     const furlongsToMiles = furlongs / 8;
     const speedInMiles = furlongsToMiles / fortnightToHours;
     expect(convertToTwoDigits(speedInMiles)).toEqual(66.96);
-  })
+  });
+
+  test("1.9", () => {
+    const mileageInMilesPerGallon = 55;
+    const gallonsToLiters = 3.79;
+    const mileageInKmPerLiter = (mileageInMilesPerGallon * 1.609) / gallonsToLiters;
+    const distance = 1500;
+    const capacity = 45;
+    const gasRequired = distance / mileageInKmPerLiter;
+    const tanksForDistance = gasRequired / capacity;
+    expect(convertToTwoDigits(tanksForDistance)).toEqual(1.43);
+  });
+
+  test("1.11", () => {
+    const density = 19.5;
+    const weightInKg = 60;
+    const volumeOfSphere = (weightInKg * 1000) / density;
+    const cubedRadius = (3 * volumeOfSphere) / (4 * Math.PI);
+    const radiusOfSphere = Math.cbrt(cubedRadius);
+    expect(convertToTwoDigits(radiusOfSphere)).toEqual(9.02);
+  });
+
+  test("1.12-b", () => {
+    const weightInKg = 75;
+    const recommendedLysineInMg = 12;
+    const recommendedLysineInGram = weightInKg * recommendedLysineInMg;
+    expect(convertToTwoDigits(recommendedLysineInGram)).toEqual(900)
+  });
+
+  test("1.12-c", () => {
+    const b2InMg = 2;
+    const rdaInG = 0.0030;
+    const recommendedTablets = (rdaInG * 1000) / b2InMg;
+    expect(convertToTwoDigits(recommendedTablets)).toEqual(1.5);
+  });
 });
